@@ -3,4 +3,4 @@ firstName=input()
 print("Welecome please enter your last name")
 LastName=input()
 
-print(firstName + LastName)
+print("Your name is " +firstName +" " + LastName)
