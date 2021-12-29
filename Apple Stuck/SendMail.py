@@ -1,9 +1,9 @@
 # import smtplib, ssl
 #
-# smtp_server = "refua.sahar@gmail.com"
+# smtp_server = "myMail@gmail.com"
 # port = 587  # For starttls
-# sender_email = "refua.sahar@gmail.com"
-# password = "IZm9701!@"#input("Type your password and press enter: ")
+# sender_email = "myMail@gmail.com"
+# password = "MyPassword"#input("Type your password and press enter: ")
 #
 # # Create a secure SSL context
 # context = ssl.create_default_context()
@@ -25,10 +25,10 @@ import smtplib, ssl
 import socket
 socket.getaddrinfo('127.0.0.1', 8080)
 port = 465  # For SSL
-smtp_server = "sahar.python.test@gmail.com"
-sender_email = "sahar.python.test@gmail.com"  # Enter your address
-receiver_email = "refua.sahar@gmail.com"  # Enter receiver address
-password = "Sr6077517!#%" # input("Type your password and press enter: ")
+smtp_server = "myMail@gmail.com"
+sender_email = "myMail@gmail.com"  # Enter your address
+receiver_email = "myMail@gmail.com"  # Enter receiver address
+password = "MyPassword" # input("Type your password and press enter: ")
 message = """\
 Subject: Hi there
 
