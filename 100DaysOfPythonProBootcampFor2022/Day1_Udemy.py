@@ -1,3 +1,4 @@
+# variables
 # First run the input function
 # Second run the print function with value from input function
 

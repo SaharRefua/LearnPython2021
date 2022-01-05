@@ -1,3 +1,4 @@
+# data types
 print("Welcome to tip calculator ")
 bill = input("What was the total bill? $")
 percentage =input("What Percentage tip would you like to give? 10 ,12 ,15 ")
