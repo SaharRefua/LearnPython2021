@@ -47,6 +47,14 @@ def check_for_ace(cards_list):
     return there_is_ace_in_the_list
 
 def check_cards():
+    if cards_sum(computer_cards) == 21:
+        still_valid_cards = False
+        #print(colored("Your lose = (", 'red'))
+        return still_valid_cards
+    if cards_sum(user_cards) == 21:
+        still_valid_cards = False
+        #print(colored("Your win = )", 'green'))
+        return still_valid_cards
     if cards_sum(user_cards) > 21:
         if check_for_ace(user_cards):
             check_cards()
