@@ -20,6 +20,8 @@ from builtins import complex
 
 from art_blackjack import logo
 import random
+from replit import clear
+
 from termcolor import colored
 
 
@@ -60,30 +62,30 @@ def check_cards():
             check_cards()
         else:
             still_valid_cards=False
-            print("you over went , you lose")
+            print(colored("you over went , you lose", 'red'))
             return still_valid_cards
     if cards_sum(computer_cards) > 21:
         if check_for_ace(computer_cards):
             check_cards()
         else:
             still_valid_cards = False
-            print("Computer is over went , you win")
+            print(colored("Computer is over went , you win", 'green'))
             return still_valid_cards
 
     elif cards_sum(computer_cards) < 17:
-        print("\nComputer get another card!!!!!!")
+        print(colored("\nComputer get another card!!!!!!", 'yellow'))
         computer_cards.append(get_another_card())
         check_cards()
 
 def check_who_win():
         if cards_sum(user_cards) > cards_sum(computer_cards):
-            print(f"Your win = ) ")
+            print(colored("Your win = )", 'green'))
             return
         elif cards_sum(user_cards) == cards_sum(computer_cards):
-            print(f"Is a draw !")
+            print(colored("Is a draw !", 'yellow'))
             return
         else:
-            print(f"Your loss = ( ")
+            print(colored("Your lose = (", 'red'))
             return
 
 def blackjack():
@@ -94,29 +96,37 @@ def blackjack():
     computer_cards.append(random.choice(cards))
     computer_cards.append(random.choice(cards))
     print(f"Computer First card: {computer_cards[0]}")
+    check_cards()
 
     while still_valid_cards:
         if still_valid_cards and input("Type 'y' to get another card or 'n' to pass ").lower() == 'y':
             user_cards.append(get_another_card())
-            if check_cards():
-                print(f"Your cards: {user_cards} Current score: {cards_sum(user_cards)}")
-                print(f"Computer First card: {computer_cards[0]}")
-        if input("Type 'y' to get another card or 'n' to pass ").lower() == 'n':
-            # check_cards()1
-            # still_valid_cards = False
+            results = check_cards()
+            print(f"Your cards: {user_cards} Current score: {cards_sum(user_cards)}")
+            print(f"Computer First card: {computer_cards[0]}")
+            if results==False:
+                # check_cards()1
+                # still_valid_cards = False
+                print(f"Your final hand: {user_cards} ,final score :{cards_sum(user_cards)}  ")
+                print(f"Computer final hand: {computer_cards} ,final score :{cards_sum(computer_cards)}  ")
+                break
+
+        else:
             check_who_win()
             print(f"Your final hand: {user_cards} ,final score :{cards_sum(user_cards)}  ")
             print(f"Computer final hand: {computer_cards} ,final score :{cards_sum(computer_cards)}  ")
             break
 while still_playing:
     if input("Do you want to play a game of Blackjack ? type 'y' or 'n'").lower() == 'y':
+        clear()
         print(colored(logo , 'green'))
         user_cards = []
         computer_cards = []
         blackjack()
     else:
         still_playing = False
-        print("See you next time!")
+        print(colored("See you next time!", 'yellow'))
+
 
 ##################### Hints #####################
 
