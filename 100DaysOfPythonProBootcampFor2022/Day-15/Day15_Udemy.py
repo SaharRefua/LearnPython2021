@@ -105,7 +105,7 @@ while coffee_machine_turn_on:
         # else:
         #     print("Not resources please try again!")
     elif user_answer == "off":
-        coffee_machine_turn_on= False
+        coffee_machine_turn_on = False
     else:
         print("You type wrong answer try again")
 
