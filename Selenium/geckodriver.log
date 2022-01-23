@@ -1,0 +1,55 @@
+1642943686014	geckodriver	INFO	Listening on 127.0.0.1:59046
+1642943689063	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "59047" "-no-remote" "-profile" "C:\\Users\\Sahar\\AppData\\Local\\Temp\\rust_mozprofileEDlTOM"
+1642943689386	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Sahar\\AppData\\Local\\Temp\\rust_mozprofileEDlTOM\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:59047/devtools/browser/d27fac4e-30ff-4179-9ef6-f29524ccd397
+1642943691382	Marionette	INFO	Listening on port 59053
+1642943691735	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+1642943740489	Marionette	INFO	Stopped listening on port 59053
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+remote-debugging-port" "59150" "-no-remote" "-profile" "C:\\Users\\Sahar\\AppData\\Local\\Temp\\rust_mozprofileTLfwFV"
+1642943728759	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Sahar\\AppData\\Local\\Temp\\rust_mozprofileTLfwFV\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:59150/devtools/browser/9d554cbb-b69e-4db5-ae90-96fc3a002289
+1642943730956	Marionette	INFO	Listening on port 59157
+1642943731135	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+1642943739351	Marionette	INFO	Stopped listening on port 59157
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1642943743409	geckodriver	INFO	Listening on 127.0.0.1:59244
+1642943746474	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "59245" "-no-remote" "-profile" "C:\\Users\\Sahar\\AppData\\Local\\Temp\\rust_mozprofilelecsku"
+1642943746759	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Sahar\\AppData\\Local\\Temp\\rust_mozprofilelecsku\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:59245/devtools/browser/7c2de0a5-d06c-446b-a5cb-fedf710b72dc
+1642943748576	Marionette	INFO	Listening on port 59251
+1642943748633	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+JavaScript error: , line 0: NS_ERROR_NOT_AVAILABLE
+1642949822079	Marionette	INFO	Stopped listening on port 59251
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+nette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\Sahar\\AppData\\Local\\Temp\\rust_mozprofile4B2s3V\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:59551/devtools/browser/e6932558-0e34-4c32-a5f1-a6b1ddb2a895
+1642944064689	Marionette	INFO	Listening on port 59557
+1642944064974	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+JavaScript error: resource:///actors/FormValidationChild.jsm, line 177: TypeError: this._element is null
+1642944089817	Marionette	INFO	Stopped listening on port 59557
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
