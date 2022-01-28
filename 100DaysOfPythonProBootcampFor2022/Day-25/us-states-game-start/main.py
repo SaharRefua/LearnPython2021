@@ -6,37 +6,36 @@ print(data)
 screen = turtle.Screen()
 screen.title("U.S States Game")
 image = "blank_states_img.gif"
+guessed_states = []
 turtle.addshape(image)
 turtle.shape(image)
 correct_guesses = 0
-
+writer = turtle.Turtle()
+writer.penup()
+writer.hideturtle()
+user_not_guess = []
 still_guessing = True
-while still_guessing:    #for guess in range(0,50):
-
-    answer_state = screen.textinput(title=f"{correct_guesses}/50 Guess the State", prompt="What's another state's name")
+while still_guessing:
+    answer_state = screen.textinput(title=f"{correct_guesses}/50 Guess the State", prompt="What's another state's name").title()
+    if answer_state =="Exit":
+        for state in states:
+            if state not in guessed_states:
+                user_not_guess.append(state)
+        print(user_not_guess)
+        not_guess_data=pandas.DataFrame(user_not_guess)
+        not_guess_data.to_csv("states_to_learn.csv")
+        break
     for state in states:
-        #print(state)
         if answer_state.lower() == str(state).lower():
             row = data[data.state == state]
-            correct_guesses += 1
-            #print(row)
-            #print(type(row))
-            #turtle.goto(int(row.x),int(row.y) )
-            state_name = str(state)
-            #turtle.write(state_name, False, align="center")
-            turtle.write((0, 0), True)
-            #print(f"X:{row[1]} and y:{row[2]}" )
+            if state not in guessed_states:
+                guessed_states.append(state)
+                correct_guesses += 1
+                state_name = str(state)
+                writer.goto(int(row.x),int(row.y) )
+                writer.write(row.state.item(), True)
 
     if correct_guesses == 50:
         still_guessing = False
 
-
-
-
-
-
-
-
-
-
-screen.exitonclick()
+#screen.exitonclick()
