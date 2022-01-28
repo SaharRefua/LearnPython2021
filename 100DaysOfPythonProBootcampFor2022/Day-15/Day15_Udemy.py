@@ -33,7 +33,7 @@ resources = {
 }
 coffee_machine_turn_on = True
 
-# TODO 2: check resources sufficient
+#check resources sufficient
 
 
 def check_resources(user_request):
@@ -48,7 +48,7 @@ def check_resources(user_request):
     return True
 
 
-# TODO 4: check transaction successfully
+# check transaction successfully
 
 
 def check_money(order):
@@ -76,7 +76,7 @@ def check_money(order):
         return False
 
 
-# TODO 5: Make coffee.
+# Make coffee.
 
 def make_coffee(coffee_ordered):
     order = MENU[coffee_ordered]
@@ -89,7 +89,7 @@ def make_coffee(coffee_ordered):
     #print("Your coffee is ready !")
 
 
-# TODO 1 :print report
+#print report
 while coffee_machine_turn_on:
     user_answer = input("What would you like ? (espresso/latte/cappuccino): ")
 
@@ -99,7 +99,7 @@ while coffee_machine_turn_on:
     elif user_answer == "espresso" or user_answer == "latte" or user_answer == "cappuccino":
         if check_resources(user_answer):
             print("Please insert Money:")
-            # TODO 3: Process coins
+            # Process coins
             if check_money(user_answer):
                 make_coffee(user_answer)
         # else:

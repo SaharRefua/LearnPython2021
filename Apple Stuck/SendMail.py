@@ -15,7 +15,7 @@
 #     server.starttls(context=context) # Secure the connection
 #     server.ehlo() # Can be omitted
 #     server.login(sender_email, password)
-#     # TODO: Send email here
+#     # Send email here
 # except Exception as e:
 #     # Print any error messages to stdout
 #     print(e)
