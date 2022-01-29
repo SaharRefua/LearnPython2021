@@ -13,15 +13,16 @@ correct_guesses = 0
 writer = turtle.Turtle()
 writer.penup()
 writer.hideturtle()
-user_not_guess = []
+# user_not_guess = []
 still_guessing = True
 while still_guessing:
     answer_state = screen.textinput(title=f"{correct_guesses}/50 Guess the State", prompt="What's another state's name").title()
-    if answer_state =="Exit":
-        for state in states:
-            if state not in guessed_states:
-                user_not_guess.append(state)
-        print(user_not_guess)
+    if answer_state == "Exit":
+        # for state in states:
+        #     if state not in guessed_states:
+        #         user_not_guess.append(state)
+        # print(user_not_guess)
+        user_not_guess = [state for state in states if state not in guessed_states]
         not_guess_data=pandas.DataFrame(user_not_guess)
         not_guess_data.to_csv("states_to_learn.csv")
         break
