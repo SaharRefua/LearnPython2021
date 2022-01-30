@@ -6,13 +6,13 @@ from selenium.webdriver.support.wait import WebDriverWait
 import time
 driver = webdriver.Chrome('chromedriver')
 driver.get("https://www.linkedin.com/")
-driver.maximize_window() #set_window_size(1890, 1300)
+driver.maximize_window()
 
 user_name= driver.find_element(By.ID, "session_key")
 password= driver.find_element(By.ID,"session_password")
 
-user_name.send_keys("refua.sahar@gmail.com")
-password.send_keys("citso2016")
+user_name.send_keys("MyMail@gmail.com")
+password.send_keys("MyPassword")
 submit= driver.find_element(By.XPATH,'''//*[@id="main-content"]/section[1]/div/div/form/button''').click()
 print(driver.title)
 if "Linkin" in driver.title :
