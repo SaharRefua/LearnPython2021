@@ -1,5 +1,5 @@
 import os
-folders_path = "C:/PythonProjects/LearnPython2021/100DaysOfPythonProBootcampFor2022" #input("Ender folder dirctory:")
+folders_path = "C:/PythonProjects/git_test/LearnPython2021/100DaysOfPython" #input("Ender folder dirctory:")
 folders_name ="Day-" #input("Enter folder name:")
 folders_number = int(input("Enter folders number that you what to create :"))
 os.chdir(folders_path)
