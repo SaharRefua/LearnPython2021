@@ -104,6 +104,8 @@ add_button.grid(column=1, row=4, columnspan=2)
 
 window.mainloop()
 
+
+
 # example of 'columnspan' in grid
 
 
