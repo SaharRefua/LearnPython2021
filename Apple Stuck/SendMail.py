@@ -55,9 +55,12 @@ from email.message import EmailMessage
 
 subject = "Email From Python"
 body = "This is a test email form Python!"
-sender_email = "ragnar.vikings.xxx@gmail.com"
-receiver_email = "refua.sahar@gmail.com"
-password = input("Enter a password: ")
+# sender_email ="" #"ragnar.vikings.xxx@gmail.com"
+# receiver_email = "refua.sahar@gmail.com"
+# password = input("Enter a password: ")
+sender_email = "Test@gmail.com"
+password = "My_password"
+receiver_email = "Test@gmail.com"
 
 message = EmailMessage()
 message["From"] = sender_email
