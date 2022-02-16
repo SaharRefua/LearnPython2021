@@ -1,25 +1,25 @@
 # import requests
 # import json
-# resposnse =requests.get("https://api.stackoverflow.com/2.3/questions/")
-# print(resposnse)
-# resposnse.raise_for_status()  # raises exception when not a 2xx response
+# response =requests.get("https://api.stackoverflow.com/2.3/questions/")
+# print(response)
+# response.raise_for_status()  # raises exception when not a 2xx response
 #
-# if resposnse.status_code != 204:
-#     with open('resposnse.json', 'a') as f:
-#         f.write(str(resposnse.content))
+# if response.status_code != 204:
+#     with open('response.json', 'a') as f:
+#         f.write(str(response.content))
 #
-# for data in resposnse.json():
+# for data in response.json():
 #      print(data)
 #
 #
 #
 #
-# #   if resposnse.status_code != 204:
-# #    resposnse.decode('utf-8').replace('\0', '')
-# # for data in resposnse.json()['items']:
+# #   if response.status_code != 204:
+# #    response.decode('utf-8').replace('\0', '')
+# # for data in response.json()['items']:
 # #     print(data)
 # # open('data.json', 'a') as file:
-# #     file.write(resposnse)
+# #     file.write(response)
 
 
 import requests

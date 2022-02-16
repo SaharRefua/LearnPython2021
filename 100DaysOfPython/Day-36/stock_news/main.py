@@ -1,42 +1,44 @@
-import requests
-import datetime
-import os
+import requests, os
+from datetime import datetime, timedelta
 from twilio.rest import Client
 
-account_sid = os.environ.get("OWM_API_KEY")
-auth_token = os.environ.get("token")
-STOCK = "TSLA"
-# STOCK = "APPEL"
-# STOCK = "BBC"
-COMPANY_NAME = "Tesla Inc"
-COMPANY_NAME = "Appel"
-COMPANY_NAME = "Google"
-api_key = "BCUA2YZQI7X72VSY"
-message = ""
+STOCK_NAME = "TSLA"
+COMPANY_NAME = "google"#"Tesla Inc"
+STOCK_NAME = "F"
+ARTICCLES = []
+MESSAGE = []
+STOCK_ENDPOINT = "https://www.alphavantage.co/query"
+NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
+stock_api_key = "BCUA2YZQI7X72VSY"
 
+yesterday_closing_price= 0
+day_before_yesterday_closing_price = 0
+## STEP 1: Use https://www.alphavantage.co/documentation/#daily
+# When stock price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 parameters = {
-
-    "function": "TIME_SERIES_INTRADAY",
-    "symbol": STOCK,
-    "interval": "60min",
-    # "slice":"day1",
-    # "slice":"year1month1",
-    # "outputsize":"full",
-    "apikey": api_key,
+    "function": "TIME_SERIES_DAILY",
+    "symbol": STOCK_NAME,
+    "apikey": stock_api_key,
 
 }
-newsapi = "863025034cda43eaae57c5f43422a4ff"
+
+getnewsapi = "863025034cda43eaae57c5f43422a4ff"
 parameters_2 = {
-    "apiKey": newsapi,
+    "apiKey": getnewsapi,
 
 }
 
+def send_sms():
+    global MESSAGE ,ARTICCLES
 
-def send_sms(auth_token, account_sid, message):
+    account_sid = os.environ.get("OWM_API_KEY")
+    auth_token = os.environ.get("token")
+
     client = Client(account_sid, auth_token)
+
     message = client.messages \
         .create(
-        body=f"{message}.",
+        body=f"{MESSAGE}\n{ARTICCLES}",
         from_='+19034851279',
         to='+9720524879755'
         # to='+972523692124'
@@ -44,70 +46,101 @@ def send_sms(auth_token, account_sid, message):
     print(message.status)
 
 
-date = datetime.datetime.now()
-def get_stock_price(parameters):
-    response = requests.get("https://www.alphavantage.co/query", params=parameters)
-    response.raise_for_status()
-    data = response.json()
-    hour_for_each_day = data["Time Series (60min)"]
-    return hour_for_each_day
-
-def get_last_trading_date(date_):
-    if 0 <= date_.weekday() <= 4:
-        # print("during trading days")
-        stock_prices=get_stock_price(parameters)
-
-    else:
-        # day = str(date_)
-        day = date_.day
-        day = int(day) - 1
-        date_ = date_.replace(day=day)
-        print(date_)
-        get_last_trading_date(date_)
 
 
-# print(date.date())
-
-trading_date = get_last_trading_date(date)
-print(trading_date)
 
 
-## STEP 1: Use https://www.alphavantage.co
-# When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
-
-    # print(hour_for_each_day)
-    #
-    # for hour in hour_for_each_day.items():
-    #     date_time = str(hour[0])
-    #     new_date = date_time.split(" ")[0]
-    #     print(new_date, trading_date)
-    #     if new_date == str(trading_date.date()):
-    #         print("good")
 
 
-# print(hour[0])
 
 
-## STEP 2: Use https://newsapi.org
-# Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
-def get_news(parameters_2, COMPANY_NAME):
+#  6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
+#  7. - Use Python slice operator to create a list that contains the first 3 articles. Hint: https://stackoverflow.com/questions/509211/understanding-slice-notation
+def get_news():
+    global COMPANY_NAME, ARTICCLES
     response = requests.get("https://newsapi.org/v2/top-headlines/sources", params=parameters_2)
     response.raise_for_status()
     data = response.json()
     new_data = data["sources"]
     # print(new_data)
     for item in new_data:
-        if COMPANY_NAME == item["name"]:
-            print(item)
-    # message += f"{STOCK}: 🔺 @%\n"
+        #print(item)
+        if COMPANY_NAME in item["name"].lower():
+            if len(ARTICCLES) < 3:
+                ARTICCLES.append(item)
+    print(ARTICCLES)
 
 
-# get_news(parameters_2, COMPANY_NAME)
-## STEP 3: Use https://www.twilio.com
-# Send a seperate message with the percentage change and each article's title and description to your phone number. 
+#  1. - Get yesterday's closing stock price. Hint: You can perform list comprehensions on Python dictionaries. e.g. [new_value for (key, value) in dictionary.items()]
+#  2. - Get the day before yesterday's closing stock price
+def get_closing_prices():
 
-# send_sms(auth_token,account_sid, message)
-# Optional: Format the SMS message like this:
+    response = requests.get(url=STOCK_ENDPOINT, params=parameters)
+    data = response.json()
+    today = datetime.now()
+    yesterday = datetime.now() - timedelta(1)
+
+    stock_prices = data["Time Series (Daily)"]
+    if 0 < today.weekday() <= 4:
+        pass
+    elif today.weekday() == 5:
+        today = datetime.now() - timedelta(1)
+    elif today.weekday() == 6:
+        today = datetime.now() - timedelta(2)
+    elif int(today.weekday()) == 0:
+        today = datetime.now() - timedelta(2)
+
+    yesterday = today - timedelta(1)
+    day_before_yesterday= today - timedelta(2)
+
+    for treading_day in stock_prices.items():
+        global yesterday_closing_price , day_before_yesterday_closing_price
+        type(treading_day[0])
+        if treading_day[0] == str(yesterday.date()):
+            yesterday_closing_price = treading_day[1]["4. close"]
+            print(treading_day)
+        if treading_day[0] == str(day_before_yesterday.date()):
+            day_before_yesterday_closing_price = treading_day[1]["4. close"]
+            print(treading_day)
+
+
+#  3. - Find the positive difference between 1 and 2. e.g. 40 - 20 = -20, but the positive difference is 20. Hint: https://www.w3schools.com/python/ref_func_abs.asp
+#  4. - Work out the percentage difference in price between closing price yesterday and closing price the day before yesterday.
+#  5. - If TODO4 percentage is greater than 5 then print("Get News").
+def calcult_delta():
+    global yesterday_closing_price, day_before_yesterday_closing_price,MESSAGE ,STOCK_NAME
+    increase = float(yesterday_closing_price) - float(day_before_yesterday_closing_price)
+    difference_in_price = float(increase) / float(yesterday_closing_price) * 100
+    difference_in_price = '{0:.3g}'.format(difference_in_price)
+    print(difference_in_price)
+    if float(difference_in_price) > 5:
+        text= f"{STOCK_NAME}:🔺{difference_in_price}%"
+        MESSAGE.append(text)
+        get_news()
+    elif 5 or float(difference_in_price) < -5:
+        text = f"{STOCK_NAME}:🔻{difference_in_price}%"
+        MESSAGE.append(text)
+        get_news()
+
+
+get_closing_prices()
+calcult_delta()
+send_sms()
+
+## STEP 2: https://newsapi.org/
+# Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME.
+
+
+
+## STEP 3: Use twilio.com/docs/sms/quickstart/python
+# to send a separate message with each article's title and description to your phone number.
+
+#  8. - Create a new list of the first 3 article's headline and description using list comprehension.
+
+#  9. - Send each article as a separate message via Twilio.
+
+
+# Optional : Format the message like this:
 """
 TSLA: 🔺2%
 Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
