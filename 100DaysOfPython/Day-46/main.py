@@ -10,7 +10,7 @@ soup = BeautifulSoup(response.text,"html.parser")
 print(soup)
 all_songs = []
 #all_song_tags = soup.find_all(name="li h3", id="title-of-a-story")#, class_="c-title ")
-all_song_tags = soup.select(selector="h3")
+all_song_tags = soup.find_all(name="h3", id="title-of-a-story",class_="c-title ")#select(selector="h3")
 for song_tag in all_song_tags:
     all_songs.append(song_tag.getText())
 
