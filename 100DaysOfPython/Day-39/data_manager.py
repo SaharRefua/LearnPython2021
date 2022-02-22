@@ -15,11 +15,9 @@ class DataManager:
             "x-app-id": APP_ID,
             "x-app-key": API_KEY,
         }
-
         response = requests.get(sheet_endpoint, headers=headers)
         result = response.json()
-        # print(result)
-        # pprint(result)
+
         return result
 
     def get_iataCode(self, city):
@@ -29,10 +27,8 @@ class DataManager:
         }
 
         parameters = {
-
             "term": city["city"],
             "location_types": "city"
-
         }
 
         response = requests.get(sheet_endpoint, headers=headers, params=parameters)
@@ -44,7 +40,7 @@ class DataManager:
     def update_data_sheet(self, all_cities):
         APP_ID = "6a98755a"
         API_KEY = "f842b33e07e1cab4c749a02d30cf566f"
-        sheet_endpoint = "https://api.sheety.co/04049eba40c092db9ad7d0fe1086155f/flightDeals/prices/"  # [Object ID]"
+        sheet_endpoint = "https://api.sheety.co/04049eba40c092db9ad7d0fe1086155f/flightDeals/prices/"
         headers = {
             "x-app-id": APP_ID,
             "x-app-key": API_KEY,
